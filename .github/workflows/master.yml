@@ -12,7 +12,7 @@ jobs:
       run: mkdir temp-build
     - name: Build Zipfile
       run: |
-          cd downloads
+          cd temp-build
           zip -r rydog.zip .
 
     - name: Upload artifact
