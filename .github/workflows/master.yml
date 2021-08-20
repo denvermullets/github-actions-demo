@@ -3,20 +3,21 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Create temp artifact folder
-      run: mkdir temp-build
-    - name: Build Zipfile
-      run: |
-          cd temp-build
-          zip -r rydog.zip .
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
+    - name: Archive Release
+      uses: thedoctor0/zip-release@master
       with:
-        name: ryan-dawg
-        path: temp-build
+        type: 'zip'
+        filename: 'release.zip'
+        exclusions: '*.git* /*node_modules/* .editorconfig'
+
+    - name: Upload Release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "release.zip"
+        token: ${{ secrets.ZIP }}
