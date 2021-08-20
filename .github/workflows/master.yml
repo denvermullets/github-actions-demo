@@ -8,11 +8,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
-    - name: Zip Folder
-      run: zip -r build/rydog.zip .
+    - name: Create temp artifact folder
+      run: mkdir temp-build
+    - name: Build Zipfile
+      run: |
+          cd downloads
+          zip -r rydog.zip .
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
         name: ryan-dawg
-        path: build/rydog.zip
+        path: temp-build
