@@ -9,7 +9,7 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Zip Folder
-      run: zip -r rydog.zip .
+      run: zip -r build/rydog.zip .
 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
