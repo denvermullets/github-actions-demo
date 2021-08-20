@@ -12,3 +12,8 @@ jobs:
       run: zip -r rydog.zip .
     - name: Release to Github
       run: echo "Release"
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+          name: ryan-dawg
+          path: build/rydog.zip
